@@ -133,4 +133,12 @@ function configurar_revisiones(){
 	$objetos[] = 'spip_documents';
 	ecrire_meta('objets_versions',serialize($objetos));
 }
+
+/**
+ * Configurar las URLs del sitio - ecrire/?exec=configurer_urls
+ */
+function configurar_urls(){
+	ecrire_meta('type_urls','propres');
+	ecrire_meta('urls_activer_controle','oui');
+}
 ?>
