@@ -25,6 +25,7 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 		array('configurar_multilinguismo'),
 		array('configurar_contenido'),
 		array('configurar_interactividad'),
+		array('configurar_funciones_avanzadas'),
 	);
 
 	include_spip('base/upgrade');

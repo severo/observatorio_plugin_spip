@@ -83,4 +83,23 @@ function configurar_interactividad(){
 	ecrire_meta('email_envoi', '');
 }
 
+/**
+ * Configurar las funciones avanzadas - ecrire/?exec=configurer_avancees
+ */
+function configurar_funciones_avanzadas(){
+	/* Configurar el uso de GD2 */
+	$image_process_install = charger_fonction('image_process_install','inc');
+	$image_process_install();
+	ecrire_meta('articles_modif', 'oui');
+	ecrire_meta('preview', '0minirezo,1comite');
+	ecrire_meta('version_html_max', 'html5');
+	ecrire_meta('iecompat', 'IE8squish');
+	ecrire_meta('barre_outils_public', 'oui');
+	ecrire_meta('activer_statistiques', 'oui');
+	ecrire_meta('activer_captures_referers', 'oui');
+	ecrire_meta('auto_compress_http', 'oui');
+	ecrire_meta('auto_compress_js', 'oui');
+	ecrire_meta('auto_compress_css', 'oui');
+}
+
 ?>
