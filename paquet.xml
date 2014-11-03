@@ -18,6 +18,6 @@
 	<licence lien="http://www.gnu.org/licenses/gpl-3.0.html">GNU/GPL</licence>
 	<copyright>2014</copyright>
 
-	<necessite nom="mots" compatibilite="[2.4.13;[" />
+	<necessite nom="mots" compatibilite="[2.4.12;[" />
 
 </paquet>
