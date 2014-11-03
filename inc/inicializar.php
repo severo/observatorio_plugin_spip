@@ -15,9 +15,9 @@ include_spip('inc/config');
  * Inicializacion
  */
 function configurar_identidad_dist(){
-	ecrire_meta('slogan_site' => _T('observatorio:identidad_titulo_sitio'));
-	ecrire_meta('nom_site' => _T('observatorio:identidad_eslogan_sitio'));
-	ecrire_meta('descriptif_site' => _T('observatorio:identidad_descripcion_sitio'));
+	ecrire_meta('slogan_site', _T('observatorio:identidad_titulo_sitio'));
+	ecrire_meta('nom_site', _T('observatorio:identidad_eslogan_sitio'));
+	ecrire_meta('descriptif_site', _T('observatorio:identidad_descripcion_sitio'));
 
 }
 
