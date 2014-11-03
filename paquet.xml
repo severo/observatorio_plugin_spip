@@ -19,5 +19,6 @@
 	<copyright>2014</copyright>
 
 	<necessite nom="mots" />
+	<necessite nom="revisions" />
 
 </paquet>

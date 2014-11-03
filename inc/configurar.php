@@ -118,4 +118,19 @@ function configurar_foros(){
 	ecrire_meta('prevenir_auteurs', ',pos,');
 }
 
+/**
+ * Configurar las revisiones de objetos - ecrire/?exec=configurer_revisions
+ */
+function configurar_revisiones(){
+	$objetos = array();
+	$objetos[] = 'spip_articles';
+	$objetos[] = 'spip_auteurs';
+	$objetos[] = 'spip_rubriques';
+	$objetos[] = 'spip_mots';
+	$objetos[] = 'spip_groupes_mots';
+	$objetos[] = 'spip_syndic';
+	$objetos[] = 'spip_breves';
+	$objetos[] = 'spip_documents';
+	ecrire_meta('objets_versions',serialize($objetos));
+}
 ?>
