@@ -70,4 +70,17 @@ function configurar_contenido(){
 	ecrire_meta("documents_objets", "spip_articles,spip_rubriques");
 	ecrire_meta("documents_date", "oui");
 }
+
+/**
+ * Configurar la interactividad del sitio - ecrire/?exec=configurer_interactions
+ */
+function configurar_interactividad(){
+	ecrire_meta('accepter_inscriptions', 'non');
+	ecrire_meta('accepter_visiteurs', 'non');
+	ecrire_meta('messagerie_agenda', 'non');
+	ecrire_meta('suivi_edito', 'non');
+	ecrire_meta('quoi_de_neuf', 'non');
+	ecrire_meta('email_envoi', '');
+}
+
 ?>
