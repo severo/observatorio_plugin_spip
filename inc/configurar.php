@@ -102,4 +102,20 @@ function configurar_funciones_avanzadas(){
 	ecrire_meta('auto_compress_css', 'oui');
 }
 
+/**
+ * Configurar los foros del sitio - ecrire/?exec=configurer_forum
+ */
+function configurar_foros(){
+	ecrire_meta('forums_publics', 'non');
+	ecrire_meta('forums_titre', 'oui');
+	ecrire_meta('forums_texte', 'oui');
+	ecrire_meta('forums_afficher_barre', 'oui');
+	ecrire_meta('forums_urlref', 'oui');
+	ecrire_meta('formats_documents_forum', '');
+	ecrire_meta('forum_prive_objets', 'oui');
+	ecrire_meta('forum_prive', 'non');
+	ecrire_meta('forum_prive_admin', 'non');
+	ecrire_meta('prevenir_auteurs', 'pos');
+}
+
 ?>
