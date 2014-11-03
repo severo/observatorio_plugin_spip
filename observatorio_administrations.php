@@ -18,7 +18,9 @@ include_spip('inc/meta');
 function observatorio_upgrade($nom_meta_base_version,$version_cible){
 
 	$maj = array();
+	include_spip('inc/inicializar');
 	$maj['create'] = array(
+		array('configurar_identidad'),
 	);
 
 	include_spip('base/upgrade');
