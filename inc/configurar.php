@@ -115,7 +115,7 @@ function configurar_foros(){
 	ecrire_meta('forum_prive_objets', 'oui');
 	ecrire_meta('forum_prive', 'non');
 	ecrire_meta('forum_prive_admin', 'non');
-	ecrire_meta('prevenir_auteurs', 'pos');
+	ecrire_meta('prevenir_auteurs', ',pos,');
 }
 
 ?>
