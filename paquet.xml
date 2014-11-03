@@ -1,0 +1,23 @@
+<paquet
+	prefix="observatorio"
+	categorie="divers"
+	version="0.1.0"
+	etat="dev"
+	compatibilite="[3.0.0;3.0.*]"
+	logo="images/logo_baja_calidad_32x32.png"
+	schema="1.0.0"
+	documentation="https://rednegra.net/proyectos/projects/sitio-observatorio-racismo/wiki/"
+	demonstration="http://www2.rednegra.net/observatoriodelracismo/"
+	developpement="https://rednegra.net/proyectos/projects/sitio-observatorio-racismo/wiki/"
+>
+	<nom>Observatorio del Racismo</nom>
+
+	<auteur lien="http://rednegra.net/cv/">Severo</auteur>
+	<!--credit lien="http://www.cruz.com/2010/animals-sets/">Paul Viluda (Logo, icones)</credit-->
+
+	<licence lien="http://www.gnu.org/licenses/gpl-3.0.html">GNU/GPL</licence>
+	<copyright>2014</copyright>
+
+	<necessite nom="mots" compatibilite="[2.4.13;[" />
+
+</paquet>
