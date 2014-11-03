@@ -4,7 +4,7 @@
 	version="0.1.0"
 	etat="dev"
 	compatibilite="[3.0.0;3.0.*]"
-	logo="images/logo_baja_calidad_32x32.png"
+	logo="images/odr-32.png"
 	schema="1.0.0"
 	documentation="https://rednegra.net/proyectos/projects/sitio-observatorio-racismo/wiki/"
 	demonstration="http://www2.rednegra.net/observatoriodelracismo/"
