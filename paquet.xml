@@ -20,5 +20,6 @@
 
 	<necessite nom="mots" />
 	<necessite nom="revisions" />
+	<necessite nom="crayons" />
 
 </paquet>

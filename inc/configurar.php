@@ -141,4 +141,13 @@ function configurar_urls(){
 	ecrire_meta('type_urls','propres');
 	ecrire_meta('urls_activer_controle','oui');
 }
+
+/**
+ * Configurar los lapices
+ */
+function configurar_crayons(){
+	$config_crayons = lire_config('crayons',array());
+	$config_crayons['barretypo'] = 'on';
+	ecrire_meta("crayons",serialize($config_crayons));
+}
 ?>
