@@ -145,9 +145,14 @@ function configurar_urls(){
 /**
  * Configurar los lapices
  */
-function configurar_crayons(){
-	$config_crayons = lire_config('crayons',array());
+function configurar_lapices(){
+	$config_crayons = array();
 	$config_crayons['barretypo'] = 'on';
-	ecrire_meta("crayons",serialize($config_crayons));
+	$config_crayons['filet'] = 'on';
+	$config_crayons['yellow_fade'] = 'on';
+	$config_crayons['clickhide'] = 'on';
+	$config_crayons['reduire_logo'] = '0';
+	$config_crayons['exec_autorise'] = '';
+	ecrire_meta('crayons',serialize($config_crayons));
 }
 ?>

@@ -29,6 +29,7 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 		array('configurar_foros'),
 		array('configurar_revisiones'),
 		array('configurar_urls'),
+		array('configurar_lapices'),
 	);
 
 	include_spip('base/upgrade');
