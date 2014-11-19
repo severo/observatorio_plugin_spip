@@ -19,7 +19,9 @@
 	<copyright>2014</copyright>
 
 	<necessite nom="agenda" />
+	<necessite nom="cextras" />
 	<necessite nom="crayons" />
+	<necessite nom="iextras" />
 	<necessite nom="mots" />
 	<necessite nom="pages" />
 	<necessite nom="revisions" />
