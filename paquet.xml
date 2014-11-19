@@ -18,9 +18,10 @@
 	<licence lien="http://www.gnu.org/licenses/gpl-3.0.html">GNU/GPL</licence>
 	<copyright>2014</copyright>
 
-	<necessite nom="mots" />
-	<necessite nom="revisions" />
 	<necessite nom="crayons" />
+	<necessite nom="mots" />
+	<necessite nom="pages" />
+	<necessite nom="revisions" />
 	<necessite nom="socialtags" />
 
 </paquet>
