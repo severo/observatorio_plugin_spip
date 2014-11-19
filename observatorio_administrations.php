@@ -31,6 +31,8 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 		array('configurar_urls'),
 		array('configurar_lapices'),
 		array('configurar_socialtags'),
+		array('configurar_agenda'),
+		array('configurar_minicalendario'),
 	);
 
 	include_spip('base/upgrade');

@@ -131,6 +131,7 @@ function configurar_revisiones(){
 	$objetos[] = 'spip_syndic';
 	$objetos[] = 'spip_breves';
 	$objetos[] = 'spip_documents';
+	$objetos[] = 'spip_evenements';
 	ecrire_meta('objets_versions',serialize($objetos));
 }
 
@@ -170,5 +171,32 @@ function configurar_socialtags(){
 	$config['badge'] = '';
 	$config['badgejs'] = '';
 	ecrire_meta('socialtags',serialize($config));
+}
+
+/**
+ * Configurar el plugin agenda
+ */
+function configurar_agenda(){
+	$config = array();
+	$config['titre'] = 'En la agenda';
+	$config['descriptif'] = '';
+	$config['url_evenement'] = 'evenement';
+	$config['insert_head_css'] = '1';
+	$config['affichage_debut'] = 'date_jour';
+	$config['affichage_duree'] = '1';
+	ecrire_meta('agenda',serialize($config));
+}
+
+/**
+ * Configurar el plugin minicalendario
+ */
+function configurar_minicalendario(){
+
+	$config = array();
+	$config['format_jour'] = 'initiale';
+	$config['affichage_hors_mois'] = '1';
+	$config['changement_rapide'] = '1';
+	$config['jour1'] = '1';
+	ecrire_meta('calendriermini',serialize($config));
 }
 ?>
