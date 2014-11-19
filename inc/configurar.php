@@ -155,4 +155,20 @@ function configurar_lapices(){
 	$config_crayons['exec_autorise'] = '';
 	ecrire_meta('crayons',serialize($config_crayons));
 }
+
+/**
+ * Configurar el plugin social tags
+ */
+function configurar_socialtags(){
+	$tags = array();
+	$tags[] = 'facebook';
+	$tags[] = 'twitter';
+	$config = array();
+	$config['tags'] = $tags;
+	$config['jsselector'] = '#content';
+	$config['wopen'] = 'non';
+	$config['badge'] = '';
+	$config['badgejs'] = '';
+	ecrire_meta('socialtags',serialize($config));
+}
 ?>

@@ -21,5 +21,6 @@
 	<necessite nom="mots" />
 	<necessite nom="revisions" />
 	<necessite nom="crayons" />
+	<necessite nom="socialtags" />
 
 </paquet>
