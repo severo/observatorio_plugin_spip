@@ -20,7 +20,7 @@ function crear_seccion_raiz($referencia, $nombre){
 	if(!isset($observatorio['secciones'][$referencia]) OR
 		($observatorio['secciones'][$referencia] != sql_getfetsel('id_rubrique','spip_rubriques','id_parent=0 AND id_rubrique='.$observatorio['secciones'][$referencia]))){
 		$observatorio['secciones'][$referencia] = rubrique_inserer(0);
-		revisions_rubriques($observatorio['secciones'][$referencia], array('titre' => $nombre));
+		rubrique_modifier($observatorio['secciones'][$referencia], array('titre' => $nombre));
 	}
 	ecrire_meta('observatorio',serialize($observatorio));
 }
