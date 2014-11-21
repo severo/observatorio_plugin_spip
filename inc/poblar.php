@@ -13,13 +13,13 @@ include_spip('inc/config');
 include_spip('action/editer_rubrique');
 
 /**
- * Crear una seccion raíz
+ * Crear una sección raíz
  */
 function crear_seccion_raiz($referencia, $nombre){
 	$observatorio = lire_config('observatorio');
 	if(!isset($observatorio['secciones'][$referencia]) OR
 		($observatorio['secciones'][$referencia] != sql_getfetsel('id_rubrique','spip_rubriques','id_parent=0 AND id_rubrique='.$observatorio['secciones'][$referencia]))){
-		$observatorio['secciones'][$referencia] = insert_rubrique(0);
+		$observatorio['secciones'][$referencia] = rubrique_inserer(0);
 		revisions_rubriques($observatorio['secciones'][$referencia], array('titre' => $nombre));
 	}
 	ecrire_meta('observatorio',serialize($observatorio));
