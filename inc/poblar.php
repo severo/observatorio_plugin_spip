@@ -10,6 +10,7 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 include_spip('inc/config');
+include_spip('action/editer_article');
 include_spip('action/editer_rubrique');
 
 /**
@@ -26,12 +27,37 @@ function crear_seccion_raiz($referencia, $nombre){
 }
 
 /**
+ * Crear una página única
+ */
+function crear_pagina($referencia, $nombre){
+	$observatorio = lire_config('observatorio');
+	if(!isset($observatorio['paginas'][$referencia]) OR
+		($observatorio['paginas'][$referencia] != sql_getfetsel('id_article','spip_articles','id_article='.$observatorio['paginas'][$referencia]))){
+		$observatorio['paginas'][$referencia] = article_inserer(-1);
+		article_modifier($observatorio['paginas'][$referencia], array('page' => $referencia, 'titre' => $nombre));
+	}
+	ecrire_meta('observatorio',serialize($observatorio));
+}
+
+/**
  * Crear la jerarquía de observatorio
  */
 function poblar_sessiones(){
 	crear_seccion_raiz('areas', 'Áreas de trabajo');
 	crear_seccion_raiz('accion', 'Acción política');
 	crear_seccion_raiz('noticias', 'Noticias');
+}
+
+/**
+ * Crear las páginas únicas
+ */
+function poblar_paginas(){
+	crear_pagina('colaborar', 'Como colaborar');
+	crear_pagina('quienes', 'Quienes somos');
+	crear_pagina('biblioteca', 'Biblioteca');
+	crear_pagina('contacto', 'Contacto');
+	crear_pagina('caricaturas', 'Caricaturas Neutrin');
+	crear_pagina('imagen', 'Logotipo');
 }
 ?>
 
