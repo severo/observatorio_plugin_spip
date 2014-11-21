@@ -47,7 +47,6 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
  * Desinstalación del plugin
  */
 function observatorio_vider_tables($nom_meta_version_base){
-	effacer_meta('observatorio');
 	effacer_meta($nom_meta_version_base);
 }
 ?>
