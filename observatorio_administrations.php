@@ -19,7 +19,9 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 
 	$maj = array();
 	include_spip('inc/configurar');
+	include_spip('inc/poblar');
 	$maj['create'] = array(
+		/* Configuración */
 		array('configurar_identidad'),
 		array('configurar_idioma'),
 		array('configurar_multilinguismo'),
@@ -33,6 +35,8 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 		array('configurar_socialtags'),
 		array('configurar_agenda'),
 		array('configurar_minicalendario'),
+		/* Creación de las jerarquía de secciones */
+		array('poblar_sessiones'),
 	);
 
 	include_spip('base/upgrade');
@@ -43,6 +47,7 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
  * Desinstalación del plugin
  */
 function observatorio_vider_tables($nom_meta_version_base){
+	effacer_meta('observatorio');
 	effacer_meta($nom_meta_version_base);
 }
 ?>
