@@ -35,6 +35,7 @@ function crear_pagina($referencia, $nombre){
 		($observatorio['paginas'][$referencia] != sql_getfetsel('id_article','spip_articles','id_article='.$observatorio['paginas'][$referencia]))){
 		$observatorio['paginas'][$referencia] = article_inserer(-1);
 		article_modifier($observatorio['paginas'][$referencia], array('page' => $referencia, 'titre' => $nombre));
+		article_instituer($observatorio['paginas'][$referencia], array('statut' => 'publie'));
 	}
 	ecrire_meta('observatorio',serialize($observatorio));
 }
