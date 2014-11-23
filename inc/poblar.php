@@ -56,6 +56,26 @@ function crear_pagina($referencia, $nombre){
 }
 
 /**
+ * Crear un menú
+ */
+function crear_menu($identifiant, $titre, $id_menus_entree = 0){
+	$id_menu = sql_getfetsel('id_menu','spip_menus','identifiant="'.$identifiant.'"');
+	if (!intval($id_menu)) {
+		$id_menu = sql_insertq(
+			'spip_menus',
+			array(
+				'id_menus_entree' => $id_menus_entree
+			)
+		);
+	}
+	if (intval($id_menu)) {
+		$infos_menu = array('id_menus_entree' => $id_menus_entree, 'titre' => $titre, 'identifiant' => $identifiant);
+		menu_set($id_menu, $infos_menu);
+	}
+	return $id_menu;
+}
+
+/**
  * Crear una entrada de menú
  */
 function crear_entrada_menu($id_menu, $infos){
@@ -64,6 +84,7 @@ function crear_entrada_menu($id_menu, $infos){
 		$id_entrada = insert_menus_entree($id_menu);
 		menus_entree_set($id_entrada, $infos);
 	}
+	return $id_entrada;
 }
 
 /**
@@ -112,25 +133,30 @@ function poblar_menus(){
 		include_spip('inc/filtres');
 
 		/* Creación del menú "barrenav" */
-		$identifiant = 'barrenav';
-		$id_barrenav = sql_getfetsel('id_menu','spip_menus','identifiant="'.$identifiant.'"');
-		if (!intval($id_barrenav)) {
-			$id_barrenav = insert_menu();
-		}
-		if (intval($id_barrenav)) {
-			$infos_menu = array('id_menus_entree' => 0, 'titre' => 'Menú principal','identifiant' => $identifiant);
-			$err = menu_set($id_barrenav, $infos_menu);
-		}
-		
+		$id_menu_barrenav = crear_menu('barrenav', 'Menú principal');
 		/* Creación de las entradas del menú barrenav */
-		if (intval($id_barrenav)) {
-			crear_entrada_menu($id_barrenav, array('rang' => 1, 'type_entree' => 'accueil', 'parametres' => array()));
-			crear_entrada_menu($id_barrenav, array('rang' => 2, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/quienes'))));
-			crear_entrada_menu($id_barrenav, array('rang' => 3, 'type_entree' => 'articles_rubrique', 'parametres' => array('id_rubrique' => lire_config('observatorio/secciones/areas'))));
-			crear_entrada_menu($id_barrenav, array('rang' => 4, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/biblioteca'))));
-			crear_entrada_menu($id_barrenav, array('rang' => 5, 'type_entree' => 'articles_rubrique', 'parametres' => array('id_rubrique' => lire_config('observatorio/secciones/accion'))));
-			crear_entrada_menu($id_barrenav, array('rang' => 6, 'type_entree' => 'rubriques_completes', 'parametres' => array('id_rubrique' => lire_config('observatorio/secciones/noticias'), 'niveau' => 1, 'afficher_articles' => 'non')));
-			crear_entrada_menu($id_barrenav, array('rang' => 7, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/contacto'))));
+		if (intval($id_menu_barrenav)) {
+			crear_entrada_menu($id_menu_barrenav, array('rang' => 1, 'type_entree' => 'accueil', 'parametres' => array()));
+			crear_entrada_menu($id_menu_barrenav, array('rang' => 2, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/quienes'))));
+			$id_entrada_areas = crear_entrada_menu($id_menu_barrenav, array('rang' => 3, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'rubrique', 'id_objet' => lire_config('observatorio/secciones/areas'))));
+			if (intval($id_entrada_areas)) {
+				/* Submenu de Áreas */
+				$id_menu_areas = crear_menu('barre_areas', 'Áreas de trabajo', $id_entrada_areas);
+				if (intval($id_menu_areas)) {
+					crear_entrada_menu($id_menu_areas, array('rang' => 1, 'type_entree' => 'articles_rubrique', 'parametres' => array('id_rubrique' => lire_config('observatorio/secciones/areas'))));
+				}
+			}
+			crear_entrada_menu($id_menu_barrenav, array('rang' => 4, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/biblioteca'))));
+			$id_entrada_accion = crear_entrada_menu($id_menu_barrenav, array('rang' => 5, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'rubrique', 'id_objet' => lire_config('observatorio/secciones/accion'))));
+			if (intval($id_entrada_accion)) {
+				/* Submenu de Acción */
+				$id_menu_accion = crear_menu('barre_accion', 'Acción política', $id_entrada_accion);
+				if (intval($id_menu_accion)) {
+					crear_entrada_menu($id_menu_accion, array('rang' => 1, 'type_entree' => 'articles_rubrique', 'parametres' => array('id_rubrique' => lire_config('observatorio/secciones/accion'))));
+				}
+			}
+			crear_entrada_menu($id_menu_barrenav, array('rang' => 6, 'type_entree' => 'rubriques_completes', 'parametres' => array('id_rubrique' => lire_config('observatorio/secciones/noticias'), 'niveau' => 1, 'afficher_articles' => 'non')));
+			crear_entrada_menu($id_menu_barrenav, array('rang' => 7, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/contacto'))));
 		}
 	}
 }
