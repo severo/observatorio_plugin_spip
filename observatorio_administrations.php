@@ -38,6 +38,7 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 		/* Creación de las secciones, páginas, menús */
 		array('poblar_secciones'),
 		array('poblar_paginas'),
+		array('poblar_menus'),
 	);
 
 	include_spip('base/upgrade');

@@ -22,6 +22,7 @@
 	<necessite nom="cextras" />
 	<necessite nom="crayons" />
 	<necessite nom="iextras" />
+	<necessite nom="menus" />
 	<necessite nom="mots" />
 	<necessite nom="pages" />
 	<necessite nom="revisions" />

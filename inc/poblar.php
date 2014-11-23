@@ -41,6 +41,17 @@ function crear_pagina($referencia, $nombre){
 }
 
 /**
+ * Crear una entrada de menú
+ */
+function crear_entrada_menu($id_menu, $infos){
+	$id_entrada = sql_getfetsel('id_menus_entree','spip_menus_entrees','type_entree="'.$infos['type_entree'].'" AND rang="'.$infos['rang'].'" AND id_menu='.$id_menu);
+	if(!intval($id_entrada)){
+		$id_entrada = insert_menus_entree($id_menu);
+		menus_entree_set($id_entrada, $infos);
+	}
+}
+
+/**
  * Crear la jerarquía de observatorio
  */
 function poblar_secciones(){
@@ -59,6 +70,34 @@ function poblar_paginas(){
 	crear_pagina('contacto', 'Contacto');
 	crear_pagina('caricaturas', 'Caricaturas Neutrin');
 	crear_pagina('imagen', 'Logotipo');
+}
+
+/**
+ * Crear el menú
+ */
+function poblar_menus(){
+	if(defined('_DIR_PLUGIN_MENUS')){
+		include_spip('action/editer_menu');
+		include_spip('action/editer_menus_entree');
+		include_spip('inc/filtres');
+
+		/* Creación del menú "barrenav" */
+		$identifiant = 'barrenav';
+		$id_barrenav = sql_getfetsel('id_menu','spip_menus','identifiant="'.$identifiant.'"');
+		if (!intval($id_barrenav)) {
+			$id_barrenav = insert_menu();
+		}
+		if (intval($id_barrenav)) {
+			$infos_menu = array('id_menus_entree' => 0, 'titre' => 'Menú principal','identifiant' => $identifiant);
+			$err = menu_set($id_barrenav, $infos_menu);
+		}
+		
+		/* Creación de las entradas del menú barrenav */
+		if (intval($id_barrenav)) {
+			crear_entrada_menu($id_barrenav, array('type_entree' => 'accueil', 'rang' => 1, 'parametres' => array()));
+			crear_entrada_menu($id_barrenav, array('type_entree' => 'objet', 'rang' => 2, 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/quienes'), 'titre' => 'Quiénes somos')));
+		}
+	}
 }
 ?>
 
