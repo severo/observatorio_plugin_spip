@@ -94,8 +94,13 @@ function poblar_menus(){
 		
 		/* Creación de las entradas del menú barrenav */
 		if (intval($id_barrenav)) {
-			crear_entrada_menu($id_barrenav, array('type_entree' => 'accueil', 'rang' => 1, 'parametres' => array()));
-			crear_entrada_menu($id_barrenav, array('type_entree' => 'objet', 'rang' => 2, 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/quienes'), 'titre' => 'Quiénes somos')));
+			crear_entrada_menu($id_barrenav, array('rang' => 1, 'type_entree' => 'accueil', 'parametres' => array()));
+			crear_entrada_menu($id_barrenav, array('rang' => 2, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/quienes'))));
+			crear_entrada_menu($id_barrenav, array('rang' => 3, 'type_entree' => 'articles_rubrique', 'parametres' => array('id_rubrique' => lire_config('observatorio/secciones/areas'))));
+			crear_entrada_menu($id_barrenav, array('rang' => 4, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/biblioteca'))));
+			crear_entrada_menu($id_barrenav, array('rang' => 5, 'type_entree' => 'articles_rubrique', 'parametres' => array('id_rubrique' => lire_config('observatorio/secciones/accion'))));
+			crear_entrada_menu($id_barrenav, array('rang' => 6, 'type_entree' => 'rubriques_completes', 'parametres' => array('id_rubrique' => lire_config('observatorio/secciones/noticias'), 'niveau' => 1, 'afficher_articles' => 'non')));
+			crear_entrada_menu($id_barrenav, array('rang' => 7, 'type_entree' => 'objet', 'parametres' => array('type_objet' => 'article', 'id_objet' => lire_config('observatorio/paginas/contacto'))));
 		}
 	}
 }
