@@ -43,7 +43,7 @@ function crear_pagina($referencia, $nombre){
 /**
  * Crear la jerarquía de observatorio
  */
-function poblar_sessiones(){
+function poblar_secciones(){
 	crear_seccion_raiz('areas', 'Áreas de trabajo');
 	crear_seccion_raiz('accion', 'Acción política');
 	crear_seccion_raiz('noticias', 'Noticias');
@@ -54,7 +54,7 @@ function poblar_sessiones(){
  */
 function poblar_paginas(){
 	crear_pagina('colaborar', 'Como colaborar');
-	crear_pagina('quienes', 'Quienes somos');
+	crear_pagina('quienes', 'Quiénes somos');
 	crear_pagina('biblioteca', 'Biblioteca');
 	crear_pagina('contacto', 'Contacto');
 	crear_pagina('caricaturas', 'Caricaturas Neutrin');
