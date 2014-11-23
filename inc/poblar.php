@@ -27,6 +27,21 @@ function crear_seccion_raiz($referencia, $nombre){
 }
 
 /**
+ * Crear un artículo
+ */
+function crear_articulo($referencia, $nombre, $referencia_seccion){
+	$id_rubrique = lire_config('observatorio/secciones/'.$referencia_seccion);
+	$observatorio = lire_config('observatorio');
+	if(!isset($observatorio['articulos'][$referencia]) OR
+		($observatorio['articulos'][$referencia] != sql_getfetsel('id_article','spip_articles','id_article='.$observatorio['articulos'][$referencia]))){
+		$observatorio['articulos'][$referencia] = article_inserer($id_rubrique);
+		article_modifier($observatorio['articulos'][$referencia], array('titre' => $nombre));
+		article_instituer($observatorio['articulos'][$referencia], array('statut' => 'publie'));
+	}
+	ecrire_meta('observatorio',serialize($observatorio));
+}
+
+/**
  * Crear una página única
  */
 function crear_pagina($referencia, $nombre){
@@ -58,6 +73,21 @@ function poblar_secciones(){
 	crear_seccion_raiz('areas', 'Áreas de trabajo');
 	crear_seccion_raiz('accion', 'Acción política');
 	crear_seccion_raiz('noticias', 'Noticias');
+}
+
+/**
+ * Crear los artículos
+ */
+function poblar_articulos(){
+	crear_articulo('area_investigacion', 'Área de investigación', 'areas');
+	crear_articulo('area_incidecia', 'Área de incidencia', 'areas');
+	crear_articulo('area_comunicación', 'Área de comunicación y difusión', 'areas');
+	crear_articulo('area_juridica', 'Área jurídica', 'areas');
+	crear_articulo('area_relaciones', 'Área de relaciones internacionales', 'areas');
+	crear_articulo('accion_principios', 'Principios del observatorio', 'accion');
+	crear_articulo('accion_agenda', 'Agenda de activismo', 'accion');
+	crear_articulo('accion_foro', 'Foro interactivo', 'accion');
+	crear_articulo('accion_denunciar', 'Como denunciar', 'accion');
 }
 
 /**
