@@ -125,6 +125,7 @@ function poblar_secciones(){
 	crear_seccion_raiz('areas', 'Áreas de trabajo');
 	crear_seccion_raiz('accion', 'Acción política');
 	crear_seccion_raiz('noticias', 'Noticias');
+	crear_seccion_raiz('biblioteca', 'Biblioteca');
 }
 
 /**
@@ -132,7 +133,7 @@ function poblar_secciones(){
  */
 function poblar_articulos(){
 	crear_articulo('area_investigacion', 'Área de investigación', 'areas');
-	crear_articulo('area_incidecia', 'Área de incidencia', 'areas');
+	crear_articulo('area_incidencia', 'Área de incidencia', 'areas');
 	crear_articulo('area_comunicación', 'Área de comunicación y difusión', 'areas');
 	crear_articulo('area_juridica', 'Área jurídica', 'areas');
 	crear_articulo('area_relaciones', 'Área de relaciones internacionales', 'areas');
@@ -148,7 +149,6 @@ function poblar_articulos(){
 function poblar_paginas(){
 	crear_pagina('colaborar', 'Como colaborar');
 	crear_pagina('quienes', 'Quiénes somos');
-	crear_pagina('biblioteca', 'Biblioteca');
 	crear_pagina('contacto', 'Contacto');
 	crear_pagina('caricaturas', 'Caricaturas Neutrin');
 	crear_pagina('imagen', 'Logotipo');
