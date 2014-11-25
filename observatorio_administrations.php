@@ -20,6 +20,7 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 	$maj = array();
 	include_spip('inc/configurar');
 	include_spip('inc/poblar');
+	include_spip('observatorio_pipelines');
 	$maj['create'] = array(
 		/* Configuración */
 		array('configurar_identidad'),
@@ -41,11 +42,9 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 		array('poblar_paginas'),
 		array('poblar_menus'),
 		array('poblar_mots'),
+		/* Crear los campos extras en artículos para publicaciones */
+		array('crear_campos_extras'),
 	);
-	/* Adición de los campos extras a las publicaciones - OjO: no se si se crea bien después de la sección biblioteca */
-	include_spip('inc/cextras');
-	include_spip('observatorio_pipelines');
-	cextras_api_upgrade(observatorio_declarer_champs_extras(), $maj['create']);
 
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
@@ -55,7 +54,6 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
  * Desinstalación del plugin
  */
 function observatorio_vider_tables($nom_meta_version_base){
-	cextras_api_vider_tables(observatorio_declarer_champs_extras());
 	effacer_meta($nom_meta_version_base);
 }
 ?>

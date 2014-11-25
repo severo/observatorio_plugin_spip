@@ -12,9 +12,7 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 /**
- * Creación de los campos extras en los artículos para las publicaciones
- * 
- * autor, edición, lugar, editorial, número de páginas
+ * Pipeline de definición de los campos extras en los artículos para las publicaciones
  */
 function observatorio_declarer_champs_extras($champs = array()){
 	include_spip('inc/config');
@@ -96,6 +94,19 @@ function observatorio_declarer_champs_extras($champs = array()){
 		);
 	}
 	return $champs;
+}
+
+/**
+ * Crear los campos extras en los artículos para las publicaciones
+ */
+function crear_campos_extras() {
+	include_spip('inc/cextras');
+	$declaration_champs_extras = observatorio_declarer_champs_extras();
+	if (is_array($declaration_champs_extras)) {
+		foreach($declaration_champs_extras as $table=>$champs) {
+			champs_extras_creer($table, $champs);
+		}
+	}
 }
 
 ?>
