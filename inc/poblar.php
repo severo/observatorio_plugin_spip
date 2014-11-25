@@ -12,6 +12,8 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 include_spip('inc/config');
 include_spip('action/editer_article');
 include_spip('action/editer_rubrique');
+include_spip('action/editer_groupe_mots');
+include_spip('action/editer_mot');
 
 /**
  * Crear una sección raíz
@@ -88,6 +90,35 @@ function crear_entrada_menu($id_menu, $infos){
 }
 
 /**
+ * Crear un grupo de palabras clave
+ */
+function crear_groupe_mots($referencia, $infos){
+	$observatorio = lire_config('observatorio');
+	if(!isset($observatorio['groupes_mots'][$referencia]) OR
+		($observatorio['groupes_mots'][$referencia] != sql_getfetsel('id_groupe','spip_groupes_mots','id_groupe='.$observatorio['groupes_mots'][$referencia]))){
+		$observatorio['groupes_mots'][$referencia] = groupe_mots_inserer();
+		groupe_mots_modifier($observatorio['groupes_mots'][$referencia], $infos);
+	}
+	ecrire_meta('observatorio',serialize($observatorio));
+	return $observatorio['groupes_mots'][$referencia];
+}
+
+/**
+ * Crear una palabra clave
+ */
+function crear_mot($referencia, $id_groupe, $infos){
+	$observatorio = lire_config('observatorio');
+	if((!isset($observatorio['mots'][$referencia]) OR
+		($observatorio['mots'][$referencia] != sql_getfetsel('id_mot','spip_mots','id_mot='.$observatorio['mots'][$referencia]))) AND
+		intval($id_groupe)) {
+		$observatorio['mots'][$referencia] = mot_inserer($id_groupe);
+		mot_modifier($observatorio['mots'][$referencia], $infos);
+	}
+	ecrire_meta('observatorio',serialize($observatorio));
+	return $observatorio['mots'][$referencia];
+}
+
+/**
  * Crear la jerarquía de observatorio
  */
 function poblar_secciones(){
@@ -160,5 +191,18 @@ function poblar_menus(){
 		}
 	}
 }
-?>
 
+
+/**
+ * Crear las palabras clave
+ */
+function poblar_mots(){
+	$id_grupo_categorias = crear_groupe_mots('noticias_categorias', array('titre' => 'Categorías de noticias', 'descriptif' => 'Categorías de las noticias'));
+	crear_mot('observatorio', $id_grupo_categorias, array('titre' => 'Del observatorio', 'descriptif' => 'Noticia redactada por el observatorio'));
+	crear_mot('nacional', $id_grupo_categorias, array('titre' => 'Nacional', 'descriptif' => 'Noticia redactada por un periódico nacional'));
+	crear_mot('internacional', $id_grupo_categorias, array('titre' => 'Internacional', 'descriptif' => 'Noticia redactada por un periódico internacional'));
+
+	$id_grupo_periodicos = crear_groupe_mots('noticias_periodicos', array('titre' => 'Periodicos', 'descriptif' => 'Periódico en el cual se publicó una noticia', 'unseul' => 'oui'));
+}
+
+?>

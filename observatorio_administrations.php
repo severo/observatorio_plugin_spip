@@ -40,6 +40,7 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 		array('poblar_articulos'),
 		array('poblar_paginas'),
 		array('poblar_menus'),
+		array('poblar_mots'),
 	);
 
 	include_spip('base/upgrade');
