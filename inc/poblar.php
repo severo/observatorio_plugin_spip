@@ -60,7 +60,7 @@ function crear_pagina($referencia, $nombre){
 /**
  * Crear un menú
  */
-function crear_menu($identifiant, $titre, $id_menus_entree = 0, $css = ""){
+function crear_menu($identifiant, $titre, $id_menus_entree = 0){
 	$id_menu = sql_getfetsel('id_menu','spip_menus','identifiant="'.$identifiant.'"');
 	if (!intval($id_menu)) {
 		$id_menu = sql_insertq(
@@ -71,7 +71,7 @@ function crear_menu($identifiant, $titre, $id_menus_entree = 0, $css = ""){
 		);
 	}
 	if (intval($id_menu)) {
-		$infos_menu = array('id_menus_entree' => $id_menus_entree, 'titre' => $titre, 'identifiant' => $identifiant, 'css' => $css);
+		$infos_menu = array('id_menus_entree' => $id_menus_entree, 'titre' => $titre, 'identifiant' => $identifiant);
 		menu_set($id_menu, $infos_menu);
 	}
 	return $id_menu;
@@ -164,7 +164,7 @@ function poblar_menus(){
 		include_spip('inc/filtres');
 
 		/* Creación del menú "barrenav" */
-		$id_menu_barrenav = crear_menu('firstnav', 'Menú principal', 0, 'menuder');
+		$id_menu_barrenav = crear_menu('firstnav', 'Menú principal');
 		/* Creación de las entradas del menú barrenav */
 		if (intval($id_menu_barrenav)) {
 			crear_entrada_menu($id_menu_barrenav, array('rang' => 1, 'type_entree' => 'accueil', 'parametres' => array()));
