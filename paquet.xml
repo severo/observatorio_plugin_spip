@@ -27,7 +27,6 @@
 	<necessite nom="pages" />
 	<necessite nom="revisions" />
 	<necessite nom="socialtags" />
-	<necessite nom="zcore" />
 
 	<pipeline nom="declarer_champs_extras" inclure="observatorio_pipelines.php" />
 </paquet>
