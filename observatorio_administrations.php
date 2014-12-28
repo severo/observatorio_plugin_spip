@@ -42,8 +42,6 @@ function observatorio_upgrade($nom_meta_base_version,$version_cible){
 		array('poblar_paginas'),
 		array('poblar_menus'),
 		array('poblar_mots'),
-		/* Crear los campos extras en artículos para publicaciones */
-		array('crear_campos_extras'),
 	);
 
 	include_spip('base/upgrade');
