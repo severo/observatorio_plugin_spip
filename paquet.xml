@@ -21,10 +21,13 @@
 	<necessite nom="agenda" />
 	<necessite nom="cextras" />
 	<necessite nom="crayons" />
+	<necessite nom="doc2img" />
 	<necessite nom="iextras" />
 	<necessite nom="menus" />
 	<necessite nom="mots" />
 	<necessite nom="pages" />
+	<necessite nom="pdfjs" />
+	<necessite nom="pays" />
 	<necessite nom="revisions" />
 	<necessite nom="socialtags" />
 
