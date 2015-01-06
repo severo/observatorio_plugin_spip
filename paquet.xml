@@ -25,6 +25,7 @@
 	<necessite nom="iextras" />
 	<necessite nom="menus" />
 	<necessite nom="mots" />
+	<necessite nom="nospam" />
 	<necessite nom="oembed" />
 	<necessite nom="pages" />
 	<necessite nom="pdfjs" />
